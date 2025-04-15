@@ -1,14 +1,1 @@
-streamlit
-pandas
-numpy
-seaborn
-matplotlib
-plotly
-scikit-learn
-xlsxwriter
-Pillow
-openpyxl
-statsmodels
-python-dateuti
-pytz
-tzdata
+
