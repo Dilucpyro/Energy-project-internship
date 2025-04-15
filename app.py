@@ -19,11 +19,11 @@ from PIL import Image
 import base64
 
 # Setup with enhanced UI
-st.set_page_config(page_title="Energy Analytics Dashboard", layout="wide", page_icon="📊")
-st.title("🔋 Smart Energy Analytics Dashboard")
+st.set_page_config(page_title="Energy Analytics Dashboard", layout="wide", page_icon="")
+st.title("Smart Energy Analytics Dashboard")
 
 # File Upload with enhanced UI
-uploaded_file = st.file_uploader("📤 Upload your dataset (CSV/XLSX)", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader("Upload your dataset (CSV/XLSX)", type=["csv", "xlsx"])
 
 # Keywords to detect energy dataset
 ENERGY_KEYWORDS = ['energy', 'consumption', 'production', 'electricity', 'power', 'fuel', 'renewable', 'kwh', 'megawatt', 'grid']
@@ -291,9 +291,9 @@ if uploaded_file:
     dataset_type = "Energy" if is_energy_dataset(df) else "Generic"
     
     # Display in Streamlit
-    st.success(f"✅ Successfully uploaded {uploaded_file.name} ({dataset_type} Dataset)")
+    st.success(f"Successfully uploaded {uploaded_file.name} ({dataset_type} Dataset)")
     
-    with st.expander("📋 Dataset Preview", expanded=True):
+    with st.expander("Dataset Preview", expanded=True):
         st.dataframe(df.head())
         
         col1, col2, col3 = st.columns(3)
@@ -341,7 +341,7 @@ if uploaded_file:
             st.plotly_chart(fig, use_container_width=True)
             
             # Correlation heatmap
-            st.subheader("🔥 Energy Metrics Correlation")
+            st.subheader(" Energy Metrics Correlation")
             corr_matrix = df[energy_cols].corr()
             
             fig = go.Figure(data=go.Heatmap(
@@ -357,11 +357,11 @@ if uploaded_file:
             st.plotly_chart(fig, use_container_width=True)
     
     # Model evaluation
-    st.subheader("🤖 Machine Learning Analysis")
+    st.subheader(" Machine Learning Analysis")
     df_ml = df.select_dtypes(include=np.number)
     
     if target_col not in df_ml.columns:
-        st.warning("⚠️ Target column not in numeric data. Skipping ML analysis.")
+        st.warning("Target column not in numeric data. Skipping ML analysis.")
     else:
         X = df_ml.drop(columns=[target_col])
         y = df_ml[target_col]
@@ -454,7 +454,7 @@ if uploaded_file:
         
         # Feature importance visualization
         if feature_importances:
-            st.subheader("📊 Feature Importance")
+            st.subheader("Feature Importance")
             selected_model = st.selectbox("Select model", list(feature_importances.keys()))
             
             fi_df = pd.DataFrame({
@@ -467,7 +467,7 @@ if uploaded_file:
             st.plotly_chart(fig, use_container_width=True)
     
     # Generate and download Excel report
-    st.subheader("📥 Download Full Report")
+    st.subheader(" Download Full Report")
     if st.button("Generate Excel Dashboard"):
         with st.spinner("Creating comprehensive Excel report..."):
             excel_data = create_excel_dashboard(
@@ -479,7 +479,7 @@ if uploaded_file:
                 feature_importances=feature_importances if 'feature_importances' in locals() else None
             )
             
-            st.success("✅ Excel report generated successfully!")
+            st.success(" Excel report generated successfully!")
             st.download_button(
                 label="Download Excel Dashboard",
                 data=excel_data,
