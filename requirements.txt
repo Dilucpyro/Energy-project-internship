@@ -53,8 +53,6 @@ python-dateutil==2.9.0.post0
 pytz==2025.2
 referencing==0.36.2
 requests==2.32.3
-rpds-py==0.24.0
-rpy2==3.5.17
 scikit-learn==1.6.1
 scipy==1.15.2
 seaborn==0.13.2
